@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Student{% endblock %}
+
+{% block header %}Student Registration Form{% endblock %}
+
+{% block content %}
+<form action="{{ url_for('edit', student_id=student_id) }}" method="POST" class="styled-form">
+    <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" required placeholder="John"
+            value="{{ student.first_name }}">
+    </div>
+
+    <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" required placeholder="Doe" value="{{ student.last_name }}">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="john.doe@example.com"
+            value="{{ student.email }}">
+    </div>
+
+    <div class="form-group">
+        <label for="course">Course</label>
+        <select id="course" name="course" required>
+            <option value="{{ student.course }}" selected>{%if student.course %}{{ student.course }}{%else%}Select a
+                course{%endif%}</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Physics">Physics</option>
+        </select>
+        <div class="select-icon">▼</div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn-submit">Complete Registration</button>
+    </div>
+</form>
+{% endblock %}

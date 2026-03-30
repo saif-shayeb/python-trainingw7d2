@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Student Registration System{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="app-container">
+        <nav class="navbar">
+            <div class="nav-brand">Students Manager</div>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('register') }}" class="btn-primary">Register Student</a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="page-header">
+                <h2>{% block header %}{% endblock %}</h2>
+            </header>
+
+            <div class="content-card">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
