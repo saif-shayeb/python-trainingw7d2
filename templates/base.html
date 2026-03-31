@@ -16,7 +16,8 @@
         <nav class="navbar">
             <div class="nav-brand">Students Manager</div>
             <div class="nav-links">
-                <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('index') }}" class="nav-link">Students</a>
+                <a href="{{ url_for('courses') }}" class="nav-link">Courses</a>
                 <a href="{{ url_for('register') }}" class="btn-primary">Register Student</a>
             </div>
         </nav>
@@ -27,6 +28,17 @@
             </header>
 
             <div class="content-card">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    <div class="flash-messages">
+                      {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                {% endwith %}
                 {% block content %}{% endblock %}
             </div>
         </main>

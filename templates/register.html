@@ -25,10 +25,9 @@
         <label for="course">Course</label>
         <select id="course" name="course" required>
             <option value="" disabled selected>Select a course</option>
-            <option value="Computer Science">Computer Science</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Mathematics">Mathematics</option>
-            <option value="Physics">Physics</option>
+            {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.name }}</option>
+            {% endfor %}
         </select>
         <div class="select-icon">▼</div>
     </div>
