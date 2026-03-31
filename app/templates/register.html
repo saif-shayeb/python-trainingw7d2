@@ -5,30 +5,28 @@
 {% block header %}Student Registration Form{% endblock %}
 
 {% block content %}
-<form action="{{ url_for('edit', student_id=student.id) }}" method="POST" class="styled-form">
+<form action="{{ url_for('students.register') }}" method="POST" class="styled-form">
     <div class="form-group">
         <label for="first_name">First Name</label>
-        <input type="text" id="first_name" name="first_name" required placeholder="John"
-            value="{{ student.first_name }}">
+        <input type="text" id="first_name" name="first_name" required placeholder="John">
     </div>
 
     <div class="form-group">
         <label for="last_name">Last Name</label>
-        <input type="text" id="last_name" name="last_name" required placeholder="Doe" value="{{ student.last_name }}">
+        <input type="text" id="last_name" name="last_name" required placeholder="Doe">
     </div>
 
     <div class="form-group">
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required placeholder="john.doe@example.com"
-            value="{{ student.email }}">
+        <input type="email" id="email" name="email" required placeholder="john.doe@example.com">
     </div>
 
     <div class="form-group">
         <label for="course">Course</label>
         <select id="course" name="course" required>
-            <option value="" disabled>Select a course</option>
+            <option value="" disabled selected>Select a course</option>
             {% for course in courses %}
-            <option value="{{ course.id }}" {% if student.course_id == course.id %}selected{% endif %}>{{ course.name }}</option>
+            <option value="{{ course.id }}">{{ course.name }}</option>
             {% endfor %}
         </select>
         <div class="select-icon">▼</div>

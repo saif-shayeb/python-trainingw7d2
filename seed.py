@@ -1,4 +1,7 @@
-from app import app, db, Course, Student
+from app import create_app, db
+from app.models import Course, Student
+
+app = create_app()
 
 with app.app_context():
     # Clear existing data
