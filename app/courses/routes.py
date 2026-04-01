@@ -17,6 +17,9 @@ def add():
             db.session.add(new_course)
             db.session.commit()
             return redirect(url_for('courses.index'))
+        else:
+            flash('Course name is required.', 'error')
+            return render_template('add_course.html', form_data=request.form)
     return render_template('add_course.html')
 
 @bp.route('/edit/<int:course_id>', methods=['GET', 'POST'])

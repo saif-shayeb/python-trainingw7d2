@@ -2,13 +2,15 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from dotenv import load_dotenv
 
 db = SQLAlchemy()
 migrate = Migrate()
 
 def create_app(test_config=None):
+    load_dotenv()
     app = Flask(__name__)
-    app.secret_key = 'dev_secret_key'
+    app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key')
 
     basedir = os.path.abspath(os.path.dirname(__file__))
     db_path = os.path.join(os.path.dirname(basedir), 'app.db')

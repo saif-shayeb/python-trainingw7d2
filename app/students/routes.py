@@ -19,7 +19,8 @@ def register():
         if first_name and last_name and email and course_id:
             if Student.query.filter_by(email=email).first():
                 flash('Email address is already registered. Please use a different one.', 'error')
-                return redirect(url_for('students.register'))
+                courses = Course.query.all()
+                return render_template('register.html', courses=courses, form_data=request.form)
                 
             student = Student(
                 first_name=first_name,
@@ -31,6 +32,10 @@ def register():
             db.session.commit()
             flash('Student registered successfully!', 'success')
             return redirect(url_for('students.index'))
+        else:
+            flash('All fields are required!', 'error')
+            courses = Course.query.all()
+            return render_template('register.html', courses=courses, form_data=request.form)
             
     courses = Course.query.all()
     return render_template('register.html', courses=courses)

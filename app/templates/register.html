@@ -8,25 +8,25 @@
 <form action="{{ url_for('students.register') }}" method="POST" class="styled-form">
     <div class="form-group">
         <label for="first_name">First Name</label>
-        <input type="text" id="first_name" name="first_name" required placeholder="John">
+        <input type="text" id="first_name" name="first_name" required placeholder="John" value="{{ form_data.first_name if form_data else '' }}">
     </div>
 
     <div class="form-group">
         <label for="last_name">Last Name</label>
-        <input type="text" id="last_name" name="last_name" required placeholder="Doe">
+        <input type="text" id="last_name" name="last_name" required placeholder="Doe" value="{{ form_data.last_name if form_data else '' }}">
     </div>
 
     <div class="form-group">
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required placeholder="john.doe@example.com">
+        <input type="email" id="email" name="email" required placeholder="john.doe@example.com" value="{{ form_data.email if form_data else '' }}">
     </div>
 
     <div class="form-group">
         <label for="course">Course</label>
         <select id="course" name="course" required>
-            <option value="" disabled selected>Select a course</option>
+            <option value="" disabled {% if not form_data or not form_data.course %}selected{% endif %}>Select a course</option>
             {% for course in courses %}
-            <option value="{{ course.id }}">{{ course.name }}</option>
+            <option value="{{ course.id }}" {% if form_data and form_data.course == course.id|string %}selected{% endif %}>{{ course.name }}</option>
             {% endfor %}
         </select>
         <div class="select-icon">▼</div>
